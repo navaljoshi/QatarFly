@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/material_design_login_form.xml",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/layout/material_design_login_form.xml"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/popup_example.xml",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/layout/popup_example.xml"
+    }
+]

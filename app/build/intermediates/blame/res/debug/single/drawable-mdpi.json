@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/plan.png",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/drawable-mdpi/plan.png"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/icon1.png",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/drawable-mdpi/icon1.png"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/linkedin.png",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/drawable-mdpi/linkedin.png"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/tick.png",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/drawable-mdpi/tick.png"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/select.png",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/drawable-mdpi/select.png"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_launcher.png",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/drawable-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/app_icon.png",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/drawable-mdpi/app_icon.png"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/cup.png",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/drawable-mdpi/cup.png"
+    }
+]
