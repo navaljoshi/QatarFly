@@ -29,7 +29,7 @@ public class Client extends AsyncTask<Void, Void, Void> {
 	String msg = null;
 
 	Client(String addr, int port,TextView textResponse) {
-		Log.d("Fly","Entered Client Constructor");
+		Log.d("Socket","Entered Client Constructor");
 		dstAddress = addr;
 		dstPort = port;
 		this.textResponse=textResponse;
@@ -37,11 +37,11 @@ public class Client extends AsyncTask<Void, Void, Void> {
 
 	@Override
 	protected Void doInBackground(Void... arg0) {
-		Log.d("Fly","Entered doInBackground");
+		Log.d("Socket","Entered doInBackground");
 		try {
 
 			socket = new Socket(dstAddress, dstPort);
-            Log.d("Fly", "Created socket");
+            Log.d("Socket", "Created socket");
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
 					1024);
 			byte[] buffer = new byte[1024];
@@ -51,80 +51,73 @@ public class Client extends AsyncTask<Void, Void, Void> {
 			 DataOutputStream dOut = new DataOutputStream(socket.getOutputStream());
              msg = "hi";
              dOut.write(msg.getBytes());
-             Log.d("Fly", "Data sending to Server: " + msg);
+             Log.d("Socket", "Data sending to Server: "+ msg);
              dOut.flush(); // Send off the data
 			/*
 			 * notice: inputStream.read() will block if no data return
 			 */
 			while ((bytesRead = inputStream.read(buffer)) != -1) {
+			//while (true) {
+				//bytesRead = inputStream.read(buffer);
                     Thread.sleep(1000);
 				    dOut.write(msg.getBytes());
-                    Log.d("Fly", "Data sending to Server: " + msg);
+                    Log.d("Socket", "Data sending to Server: " + msg);
 				    dOut.flush(); // Send off the data
                     //buffer = null;
 					byteArrayOutputStream.write(buffer, 0, bytesRead);
                     response = "";
 					response = byteArrayOutputStream.toString("UTF-8");
 
-					Log.d("Fly", "Data received from Client: " + response +"bytes received : "+bytesRead);
+					Log.d("Socket", "Data received from Client: " + response +"bytes received : "+bytesRead);
 					if (response.contains("hello")) {
-						Log.d("Fly", "Server connected");
+						Log.d("Socket", "Server connected");
                        // msg = "one";
                         mainresponse = response;
                        // byteArrayOutputStream.reset();
                         byteArrayOutputStream.flush();
-                       //  buffer = null;
-                       // Log.d("Fly", "Sending one ");
+
 					}
                 if(response.contains("ok")) {
-                         Log.d("Fly", "received response for one");
+                         Log.d("socket", "received response for one");
+                        // msg = "ready";
                          mainresponse = response;
-                         //msg = "ready";
-                       //  response = "";
-                        //byteArrayOutputStream.reset();
                     byteArrayOutputStream.flush();
-                       // buffer = null;
-                        // Log.d("Fly", "Sending ready ");
+
                      }
                 if (response.contains("okready")) {
-                    Log.d("Fly", "received response for one");
+                    Log.d("Socket", "received response for ready");
                     mainresponse = response;
-                    //msg = "fly;"+MainActivity.countryName;
-					msg = "fly;india";
-                   // response = "";
+					//msg = "Socket;india";
                     byteArrayOutputStream.reset();
-                   // buffer = null;
-                   // Log.d("Fly", "Sending fly + countryname :"+MainActivity.countryName);
+
                 }
-                if (response.contains("okfly")) {
-                    Log.d("Fly", "received response for one");
+                if (response.contains("okSocket")) {
+                    Log.d("Socket", "received response for Socket");
                     mainresponse = response;
-                  //  msg = "start";
-                   // response = "";
+                    //msg =  "start";
                     byteArrayOutputStream.reset();
-                   // buffer = null;
-                   // Log.d("Fly", "Sending start ");
+
                 }
                 if (response.contains("okstart")) {
-                    Log.d("Fly", "received response for one");
+                    Log.d("Socket", "received response for start");
                     mainresponse = response;
                     //msg = "score";
                    //response = "";
                     byteArrayOutputStream.reset();
                   //  buffer = null;
-                  //  Log.d("Fly", "Sending score ");
+                  //  Log.d("Socket", "Sending score ");
                 }
                 if (response.contains("okscore")) {
-                    Log.d("Fly", "received response for one");
+                    Log.d("Socket", "received response for one");
                     mainresponse = response;
                    // msg = "done";
                   // response = "";
                     byteArrayOutputStream.reset();
                   //  buffer = null;
-                  //  Log.d("Fly", "Sending done ");
+                  //  Log.d("Socket", "Sending done ");
                 }
 				if (response.contains("okdone")) {
-					Log.d("Fly", "Game finished");
+					Log.d("Socket", "Game finished");
 
 					//clear sockets and streams .
 				}
@@ -165,7 +158,7 @@ public class Client extends AsyncTask<Void, Void, Void> {
 
 	void sendData(Socket s,String val) {
 		if (ouputStream != null) {
-			Log.d("Fly", "sendData - received string for byte conversion :" + val);
+			Log.d("Socket", "sendData - received string for byte conversion :" + val);
 			byte[] b = val.getBytes();
 			try {
 				ouputStream.write(b);
@@ -174,7 +167,7 @@ public class Client extends AsyncTask<Void, Void, Void> {
 			}
 		}else
 		{
-			Log.d("Fly", "Socket is NUll for sending Data");
+			Log.d("Socket", "Socket is NUll for sending Data");
 		}
 	}
 

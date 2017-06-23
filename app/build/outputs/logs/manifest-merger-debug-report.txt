@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:2:1-28:12
+ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:2:1-29:12
 	package
 		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:3:5-36
 		INJECTED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml
@@ -17,6 +17,18 @@ ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManife
 		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.mukeshsolanki:country-picker-android:1.1.9] /Users/naval/.android/build-cache/79b3da89d6b850068ceee16cca0248a54fe2caf9/output/AndroidManifest.xml:8:5-10:41
+MERGED from [com.juanpabloprado:countrypicker:1.2.0] /Users/naval/.android/build-cache/1890f0576188e5d1b3f56af3e3c67ecd61cc8681/output/AndroidManifest.xml:6:5-8:41
+MERGED from [com.android.support:appcompat-v7:23.1.1] /Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.1.1] /Users/naval/.android/build-cache/2a6ce5645d7b927360b55527f56e3fa8fd164aa7/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:25.3.1] /Users/naval/.android/build-cache/75725ff05b716b6deee4ae3171b1430eae4511c4/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/naval/.android/build-cache/21237ca6749bf1970d6073c7593d53bca4d8d505/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/naval/.android/build-cache/4fdf390cec0895090ba964e99d57fca9b0aba5f4/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/naval/.android/build-cache/dc3adbcdec1a068ddfd31d83e8d2ff79ef442bdf/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/naval/.android/build-cache/0a5e200759a2bbf66ca1c5044bffd371659218ac/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] /Users/naval/.android/build-cache/cc9fe2d10ce63d09650767f2bf00cf54b5f802cc/output/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:25.3.1] /Users/naval/.android/build-cache/75725ff05b716b6deee4ae3171b1430eae4511c4/output/AndroidManifest.xml:23:9-51
 	android:targetSdkVersion
 		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:9:9-38
 		INJECTED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml
@@ -30,7 +42,15 @@ ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManife
 	android:name
 		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:10:22-64
 application
-ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:12:5-26:19
+ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:12:5-27:19
+MERGED from [com.juanpabloprado:countrypicker:1.2.0] /Users/naval/.android/build-cache/1890f0576188e5d1b3f56af3e3c67ecd61cc8681/output/AndroidManifest.xml:10:5-20
+MERGED from [com.android.support:appcompat-v7:23.1.1] /Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /Users/naval/.android/build-cache/75725ff05b716b6deee4ae3171b1430eae4511c4/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/naval/.android/build-cache/21237ca6749bf1970d6073c7593d53bca4d8d505/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/naval/.android/build-cache/4fdf390cec0895090ba964e99d57fca9b0aba5f4/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/naval/.android/build-cache/dc3adbcdec1a068ddfd31d83e8d2ff79ef442bdf/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/naval/.android/build-cache/0a5e200759a2bbf66ca1c5044bffd371659218ac/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /Users/naval/.android/build-cache/cc9fe2d10ce63d09650767f2bf00cf54b5f802cc/output/AndroidManifest.xml:29:5-20
 	android:label
 		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:15:9-41
 	android:allowBackup
@@ -40,18 +60,31 @@ ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManife
 	android:theme
 		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:16:9-40
 activity#com.androidsrc.client.MainActivity
-ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:17:9-25:20
+ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:17:9-26:20
 	android:label
 		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:19:13-45
+	android:theme
+		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:20:13-71
 	android:name
 		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:18:13-41
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:20:13-24:29
+ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:21:13-25:29
 action#android.intent.action.MAIN
-ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:21:17-69
+ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:22:17-69
 	android:name
-		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:21:25-66
+		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:22:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:23:17-77
+ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:24:17-77
 	android:name
-		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:23:27-74
+		ADDED from /Users/naval/Downloads/SocketClient-master/app/src/main/AndroidManifest.xml:24:27-74
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:25.3.1] /Users/naval/.android/build-cache/75725ff05b716b6deee4ae3171b1430eae4511c4/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/naval/.android/build-cache/21237ca6749bf1970d6073c7593d53bca4d8d505/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/naval/.android/build-cache/4fdf390cec0895090ba964e99d57fca9b0aba5f4/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/naval/.android/build-cache/dc3adbcdec1a068ddfd31d83e8d2ff79ef442bdf/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/naval/.android/build-cache/0a5e200759a2bbf66ca1c5044bffd371659218ac/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /Users/naval/.android/build-cache/cc9fe2d10ce63d09650767f2bf00cf54b5f802cc/output/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:support-v4:25.3.1] /Users/naval/.android/build-cache/75725ff05b716b6deee4ae3171b1430eae4511c4/output/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:support-v4:25.3.1] /Users/naval/.android/build-cache/75725ff05b716b6deee4ae3171b1430eae4511c4/output/AndroidManifest.xml:26:9-47

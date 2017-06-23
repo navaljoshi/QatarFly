@@ -6,5 +6,9 @@
     {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi-v4/btn.xml",
         "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/drawable-mdpi/btn.xml"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi-v4/ic_search.png",
+        "source": "/Users/naval/.android/build-cache/79b3da89d6b850068ceee16cca0248a54fe2caf9/output/res/drawable-mdpi-v4/ic_search.png"
     }
 ]

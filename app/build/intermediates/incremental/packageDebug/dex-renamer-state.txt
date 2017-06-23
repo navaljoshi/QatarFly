@@ -1,4 +1,7 @@
-#Sun Jun 18 16:24:06 IST 2017
-base.0=/Users/naval/Downloads/SocketClient-master/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+#Fri Jun 23 15:59:10 IST 2017
+base.0=/Users/naval/Downloads/SocketClient-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_834b08935d8f8a32df2c6f41f8505e828390b63e
+renamed.1=classes2.dex
 renamed.0=classes.dex
-file.0=/Users/naval/Downloads/SocketClient-master/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
+file.1=/Users/naval/Downloads/SocketClient-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1b69e0068054bc311e3d405315739edf2ab599c7/classes.dex
+base.1=/Users/naval/Downloads/SocketClient-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1b69e0068054bc311e3d405315739edf2ab599c7
+file.0=/Users/naval/Downloads/SocketClient-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_834b08935d8f8a32df2c6f41f8505e828390b63e/classes.dex

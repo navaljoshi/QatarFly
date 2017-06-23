@@ -1,0 +1,32 @@
+<!-- copyrighted content owned by Android Arena (www.androidarena.co.in)-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/tablet6">
+
+
+    <TextView
+
+        android:layout_width="190dp"
+        android:layout_height="138dp"
+        android:layout_marginTop="218dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/dest3"
+        android:id="@+id/score"/>
+
+    <Button
+        android:id="@+id/dest3"
+        android:layout_width="190dp"
+        android:layout_height="138dp"
+        android:layout_alignParentBottom="true"
+
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="91dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        tools:text="Submit Score" />
+
+</RelativeLayout>
