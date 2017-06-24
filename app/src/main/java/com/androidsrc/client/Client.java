@@ -23,10 +23,11 @@ public class Client extends AsyncTask<Void, Void, Void> {
 	String response = "";
     String mainresponse = "yo";
 	TextView textResponse;
-	public OutputStream ouputStream = null;
+	public DataOutputStream ouputStream = null;
 	public InputStream inputStream = null;
 	public boolean flag = true;
 	String msg = null;
+	MainActivity mActivity = new MainActivity();
 
 	Client(String addr, int port,TextView textResponse) {
 		Log.d("Socket","Entered Client Constructor");
@@ -45,25 +46,24 @@ public class Client extends AsyncTask<Void, Void, Void> {
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
 					1024);
 			byte[] buffer = new byte[1024];
-
 			 int bytesRead;
 			 inputStream = socket.getInputStream();
-			 DataOutputStream dOut = new DataOutputStream(socket.getOutputStream());
+			 ouputStream = new DataOutputStream(socket.getOutputStream());
              msg = "hi";
-             dOut.write(msg.getBytes());
+			 ouputStream.write(msg.getBytes());
              Log.d("Socket", "Data sending to Server: "+ msg);
-             dOut.flush(); // Send off the data
+             ouputStream.flush(); // Send off the data
+
 			/*
 			 * notice: inputStream.read() will block if no data return
 			 */
 			while ((bytesRead = inputStream.read(buffer)) != -1) {
-			//while (true) {
-				//bytesRead = inputStream.read(buffer);
+
+
+				    ouputStream.write(msg.getBytes());
+				    Log.d("Socket", "Data sending to Server: "+ msg);
+				    ouputStream.flush();
                     Thread.sleep(1000);
-				    dOut.write(msg.getBytes());
-                    Log.d("Socket", "Data sending to Server: " + msg);
-				    dOut.flush(); // Send off the data
-                    //buffer = null;
 					byteArrayOutputStream.write(buffer, 0, bytesRead);
                     response = "";
 					response = byteArrayOutputStream.toString("UTF-8");
@@ -71,17 +71,16 @@ public class Client extends AsyncTask<Void, Void, Void> {
 					Log.d("Socket", "Data received from Client: " + response +"bytes received : "+bytesRead);
 					if (response.contains("hello")) {
 						Log.d("Socket", "Server connected");
-                       // msg = "one";
                         mainresponse = response;
-                       // byteArrayOutputStream.reset();
+						//mActivity.submitForm();
                         byteArrayOutputStream.flush();
 
 					}
-                if(response.contains("ok")) {
+                   if(response.contains("ok")) {
                          Log.d("socket", "received response for one");
-                        // msg = "ready";
                          mainresponse = response;
-                    byteArrayOutputStream.flush();
+                         //mActivity.countryPicker();
+                         byteArrayOutputStream.flush();
 
                      }
                 if (response.contains("okready")) {
@@ -94,32 +93,23 @@ public class Client extends AsyncTask<Void, Void, Void> {
                 if (response.contains("okSocket")) {
                     Log.d("Socket", "received response for Socket");
                     mainresponse = response;
-                    //msg =  "start";
                     byteArrayOutputStream.reset();
 
                 }
                 if (response.contains("okstart")) {
                     Log.d("Socket", "received response for start");
                     mainresponse = response;
-                    //msg = "score";
-                   //response = "";
                     byteArrayOutputStream.reset();
-                  //  buffer = null;
-                  //  Log.d("Socket", "Sending score ");
+
                 }
                 if (response.contains("okscore")) {
                     Log.d("Socket", "received response for one");
                     mainresponse = response;
-                   // msg = "done";
-                  // response = "";
                     byteArrayOutputStream.reset();
-                  //  buffer = null;
-                  //  Log.d("Socket", "Sending done ");
                 }
 				if (response.contains("okdone")) {
 					Log.d("Socket", "Game finished");
 
-					//clear sockets and streams .
 				}
 				}
 
@@ -155,21 +145,8 @@ public class Client extends AsyncTask<Void, Void, Void> {
 //		textResponse.setText(response);
 		super.onPostExecute(result);
 	}
-
-	void sendData(Socket s,String val) {
-		if (ouputStream != null) {
-			Log.d("Socket", "sendData - received string for byte conversion :" + val);
-			byte[] b = val.getBytes();
-			try {
-				ouputStream.write(b);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}else
-		{
-			Log.d("Socket", "Socket is NUll for sending Data");
-		}
-	}
-
-
 }
+
+
+
+
