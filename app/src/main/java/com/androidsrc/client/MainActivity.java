@@ -33,13 +33,16 @@ public class MainActivity extends FragmentActivity {
 	public static  String countryName = null;
 	public RelativeLayout rLayout ;
 	public String msg = "";
+    public ImageView layout ;
+    public ImageView layout1 ;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.tablet1);
-
+        setContentView(R.layout.activity_main);
+        layout = (ImageView) findViewById(R.id.background);
+        layout.setImageDrawable(getResources().getDrawable(R.drawable.tablet1)); // -> here tablet 2 is a image in drawable
 		// Full screen
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -58,6 +61,7 @@ public class MainActivity extends FragmentActivity {
 		final EditText editIpText = (EditText) dialog.findViewById(R.id.addressEditText);
 		final EditText editPortText = (EditText) dialog.findViewById(R.id.portEditText);
 		Button btnSave  = (Button) dialog.findViewById(R.id.connectButton);
+
 
 		btnSave.setOnClickListener(new OnClickListener() {
 			@Override
@@ -78,24 +82,19 @@ public class MainActivity extends FragmentActivity {
 						myClient.execute();
                         if(myClient == null)
                         {
-                            Log.d("Socket","Myclient is NULL - core ");
+                            Log.d("Socket","MyClient is NULL - core ");
                         }
-                        while(true) {
-                            try {
-                                synchronized(this){
-                                    wait(1000);
-                                }
-                            }
-                            catch(InterruptedException ex){
-                            }
-                            Log.d("Socket","Waiting for Hello");
+
+                        while(true ){
+
                             if ((myClient.mainresponse.contains("hello"))) {
                                 Log.d("Socket","Hello received");
+                                layout.setImageDrawable(getResources().getDrawable(R.drawable.tablet5));
                                 dialog.cancel();
+                                submitForm();
                                 break;
                             }
                         }
-                        submitForm(); // calling
 
                     }
 				});
@@ -107,7 +106,6 @@ public class MainActivity extends FragmentActivity {
 void submitForm()
 {
 	Log.d("Socket","Inside Function : submitForm ");
-
 	//rLayout = (RelativeLayout)findViewById(R.id.scrollView1);
 	//rLayout.setBackgroundResource(R.drawable.tablet6);
 	final EditText editName, editNumber, editEmail;
@@ -115,7 +113,7 @@ void submitForm()
     editName = (EditText) findViewById(R.id.logName);
 	editNumber = (EditText) findViewById(R.id.logMob);
 	editEmail = (EditText) findViewById(R.id.logEmail);
-	buttonForm = (Button) findViewById(R.id.logSub);
+	buttonForm = (Button)findViewById(R.id.logSub);
 
 	buttonForm.setOnClickListener(new OnClickListener() {
 		@Override
@@ -126,7 +124,6 @@ void submitForm()
 			Log.d("Socket","Email : " + editEmail.getText());
             myClient.msg = "one";
 			msg = "one";
-		//	setContentView(R.layout.basic);
             while(true) {
                 Log.d("Socket","Waiting for ok " );
                 try {
@@ -138,12 +135,19 @@ void submitForm()
                 }
                 if ((myClient.mainresponse.contains("ok"))) {
                     myClient.msg = "ready";
+                    layout1 = (ImageView) findViewById(R.id.background);
+                    //qImageView.setBackgroundResource
+                    layout1.setBackgroundResource(R.drawable.tablet2);
+                    layout1.invalidate();
                     Log.d("Socket","Received OK");
-                   // setContentView(R.layout.tablet3); -> here tablet 3 is a xml layout
-                    Log.d("Socket","setting layout ");
-                    ImageView layout = (ImageView) findViewById(R.id.background);
-                    layout.setImageDrawable(getResources().getDrawable(R.drawable.tablet2)); // -> here tablet 2 is a image in drawable
-                  //  getWindow().getDecorView().findViewById(android.R.id.).invalidate();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("Socket","Inside uI thread ");
+                          //  layout.setImageDrawable(getResources().getDrawable(R.drawable.tablet6));
+                        }
+                    });
+
 					break;
                 }
             }
