@@ -100,6 +100,10 @@
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/layout/abc_dialog_title_material.xml"
     },
     {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/tablet2.xml",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/layout/tablet2.xml"
+    },
+    {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
     },

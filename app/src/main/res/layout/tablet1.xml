@@ -7,57 +7,6 @@
     android:layout_height="fill_parent"
     >
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@drawable/tablet1"
-        android:id="@+id/background"
-        android:scaleType="fitXY"
-        />
-
-
-        <LinearLayout android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="176dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="166dp"
-            android:layout_marginBottom="50dp"
-            android:orientation="vertical"
-            >
-
-
-            <EditText
-                android:id="@+id/logName"
-                android:layout_width="fill_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="320dp"
-                android:textSize="38px"
-                android:hint="name"
-                />
-
-            <EditText android:layout_width="fill_parent"
-                android:layout_height="70dp"
-                android:hint="email"
-                android:id="@+id/logEmail"
-                android:textSize="38px"
-                android:layout_marginTop="38dp"/>
-            <EditText android:layout_width="fill_parent"
-                android:layout_height="70dp"
-                android:hint="mobile"
-                android:id="@+id/logMob"
-                android:width="100dp"
-                android:textSize="38px"
-                android:layout_marginTop="32dp"/>
-
-            <Button
-                android:id="@+id/logSub"
-                android:layout_width="190dp"
-                android:layout_height="138dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="116dp"
-                android:background="@android:color/transparent"/>
-
-        </LinearLayout>
 
 
     <Button
@@ -68,15 +17,5 @@
         android:layout_marginTop="116dp"
 
         />
-
-    <Button
-        android:id="@+id/fly"
-        android:layout_width="190dp"
-        android:layout_height="138dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="116dp"
-
-        />
-
 
 </RelativeLayout>
