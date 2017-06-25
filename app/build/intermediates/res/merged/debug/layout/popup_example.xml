@@ -14,12 +14,6 @@
             android:hint="Server ip address"
             android:layout_weight="0.19" />
 
-        <EditText
-            android:id="@+id/portEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Server port number"
-            android:layout_weight="0.23" />
 
         <Button
             android:id="@+id/connectButton"

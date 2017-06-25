@@ -28,16 +28,8 @@
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/layout/abc_activity_chooser_view_list_item.xml"
     },
     {
-        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/tablet3.xml",
-        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/layout/tablet3.xml"
-    },
-    {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/layout/abc_action_menu_layout.xml"
-    },
-    {
-        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/tablet6.xml",
-        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/layout/tablet6.xml"
     },
     {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
@@ -100,10 +92,6 @@
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/layout/abc_dialog_title_material.xml"
     },
     {
-        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/tablet2.xml",
-        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/layout/tablet2.xml"
-    },
-    {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
     },
@@ -118,10 +106,6 @@
     {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/layout/abc_list_menu_item_layout.xml"
-    },
-    {
-        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/tablet5.xml",
-        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/layout/tablet5.xml"
     },
     {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
@@ -164,20 +148,12 @@
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
     },
     {
-        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/tablet1.xml",
-        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/layout/tablet1.xml"
-    },
-    {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/layout/notification_media_action.xml"
     },
     {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/layout/abc_screen_toolbar.xml"
-    },
-    {
-        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/tablet4.xml",
-        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/layout/tablet4.xml"
     },
     {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",

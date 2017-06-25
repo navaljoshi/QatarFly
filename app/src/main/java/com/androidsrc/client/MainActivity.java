@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,17 +33,15 @@ import java.util.List;
 public class MainActivity extends FragmentActivity {
 
     TextView response;
-    Button Socket;
-    Button dest;
     Button buttonForm;
-    Button score;
     public Client myClient = null;
-    public static String countryName = null;
-    public RelativeLayout rLayout;
-    public String msg = "";
     public ImageView layout;
-    public ImageView layout1;
     public Dialog dialog = null;
+    public EditText editName, editNumber, editEmail;
+    TextView scoreText ;
+    Button scoreButton,destination,fly;
+    LinearLayout form ;
+    public  String name, number, email;
 
 
     @Override
@@ -49,11 +49,20 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         layout = (ImageView) findViewById(R.id.background);
-        layout.setImageResource(R.drawable.tablet1);; // -> here tablet 2 is a image in drawable
-        // Full screen
+
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        editName = (EditText) findViewById(R.id.logName);
+        editNumber = (EditText) findViewById(R.id.logMob);
+        editEmail = (EditText) findViewById(R.id.logEmail);
+        buttonForm = (Button) findViewById(R.id.logSub);
+        destination = (Button) findViewById(R.id.destination);
+        form = (LinearLayout)findViewById(R.id.linearLayout);
+        fly = (Button) findViewById(R.id.fly);
+        scoreText = (TextView)findViewById(R.id.scoreText);
+        scoreButton = (Button)findViewById(R.id.scoreButton);
         SocketConnectServerPopup(); // calling
     }
 
@@ -65,7 +74,6 @@ public class MainActivity extends FragmentActivity {
         dialog.setTitle("Connect to Server");
 
         final EditText editIpText = (EditText) dialog.findViewById(R.id.addressEditText);
-        final EditText editPortText = (EditText) dialog.findViewById(R.id.portEditText);
         Button btnSave = (Button) dialog.findViewById(R.id.connectButton);
 
 
@@ -74,200 +82,17 @@ public class MainActivity extends FragmentActivity {
             public void onClick(View arg0) {
                 Log.d("Socket", "Server Details Entered  ");
                 Log.d("Socket", "IP : " + editIpText.getText());
-                Log.d("Socket", "Port : " + editPortText.getText());
-
-                myClient = new Client("192.168.1.8", 8008, response);
+                myClient = new Client(editIpText.getText().toString(),8008);
                 myClient.execute();
+                layout.setImageResource(R.drawable.tablet1);
+                dialog.dismiss();
 
-				/*new Handler().post(new Runnable() {
-					@Override
-					public void run() {
-						// Code here will run in UI thread
-						Log.d("Socket","Called Clientback Thread");
-						/*  myClient = new Clientback(editIpText.getText()
-								.toString(), Integer.parseInt(editPortText
-								.getText().toString()), response);*/
-					/*	myClient = new Clientback("192.168.1.8",8008,response);
-						myClient.execute();
-                        if(myClient == null)
-                        {
-                            Log.d("Socket","MyClient is NULL - core ");
-                        }
-
-                        while(true ){
-
-                            if ((myClient.mainresponse.contains("hello"))) {
-                                Log.d("Socket","Hello received");
-                                layout.setImageDrawable(getResources().getDrawable(R.drawable.tablet5));
-                                dialog.cancel();
-                                submitForm();
-                                break;
-                            }
-                        }*/
-
-                 /*   }
-				});*/
             }
         });
         dialog.show();
+       // dialog.dismiss(); // to be removed
     }
 
-    void submitForm() {
-        Log.d("Socket", "Inside Function : submitForm ");
-        //rLayout = (RelativeLayout)findViewById(R.id.scrollView1);
-        //rLayout.setBackgroundResource(R.drawable.tablet6);
-        final EditText editName, editNumber, editEmail;
-
-        editName = (EditText) findViewById(R.id.logName);
-        editNumber = (EditText) findViewById(R.id.logMob);
-        editEmail = (EditText) findViewById(R.id.logEmail);
-        buttonForm = (Button) findViewById(R.id.logSub);
-
-        buttonForm.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Log.d("Socket", "Entered User Details ");
-                Log.d("Socket", "Name : " + editName.getText());
-                Log.d("Socket", "Number : " + editNumber.getText());
-                Log.d("Socket", "Email : " + editEmail.getText());
-                myClient.msg = "one";
-                msg = "one";
-            }
-        });
-    }
-
-    void countryPicker() {
-        Log.d("Socket", "Inside Function : countryPicker ");
-
-        while (true) {
-            try {
-                synchronized (this) {
-                    wait(1000);
-                }
-            } catch (InterruptedException ex) {
-            }
-            Log.d("Socket", "Waiting for okready ");
-            if ((myClient.mainresponse.contains("okready"))) {
-                Log.d("Socket", "Received okready");
-              //  setContentView(R.layout.tablet3);
-                break;
-            }
-        }
-
-        dest = (Button) findViewById(R.id.dest);
-        dest.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-
-
-                Log.d("Socket", "Country Picker Clicked ");
-
-                final CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
-                picker.setListener(new CountryPickerListener() {
-                    @Override
-                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
-                        // Implement your code here
-                        Log.d("Socket", "Destination : " + name);
-                        myClient.msg = "fly;" + name;
-                        while (true) {
-                            try {
-                                synchronized (this) {
-                                    wait(1000);
-                                }
-                            } catch (InterruptedException ex) {
-                            }
-                            Log.d("Socket", "Waiting for okfly ");
-                            if ((myClient.mainresponse.contains("okfly"))) {
-                             //   setContentView(R.layout.tablet4);
-                                picker.dismiss();
-                                break;
-                            }
-                        }
-
-                        letsfly();
-                    }
-                });
-                picker.show(getSupportFragmentManager(), "COUNTRY_PICKER");
-            }
-        });
-    }
-
-    void letsfly() {
-        Log.d("Socket", "Inside Function : letsfly ");
-
-        Socket = (Button) findViewById(R.id.dest1);
-
-        myClient.msg = "start";
-        while (true) {
-            try {
-                synchronized (this) {
-                    wait(1000);
-                }
-            } catch (InterruptedException ex) {
-            }
-            Log.d("Socket", "Waiting for okstart ");
-            if ((myClient.mainresponse.contains("okstart"))) {
-              //  setContentView(R.layout.tablet5);
-
-                break;
-            }
-        }
-        Socket.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Socket.setVisibility(View.VISIBLE);
-                Log.d("Socket", "Button Clicked on lets Socket page ");
-             //   setContentView(R.layout.tablet5);
-                score();
-
-            }
-        });
-    }
-
-    void score() {
-        Log.d("Socket", "Inside Function : score ");
-
-        score = (Button) findViewById(R.id.dest3);
-
-        TextView tt = (TextView) findViewById(R.id.score);
-
-        myClient.msg = "score";
-        while (true) {
-            try {
-                synchronized (this) {
-                    wait(1000);
-                }
-            } catch (InterruptedException ex) {
-            }
-            Log.d("Socket", "Waiting for okscore ");
-            if ((myClient.mainresponse.contains("okscore"))) {
-
-                String[] scoreCard = myClient.mainresponse.split(";");
-                Log.d("Socket", "Final Score is :" + scoreCard[1]);
-               // setContentView(R.layout.tablet6);
-                tt.setText(scoreCard[1]);
-                //dest.setVisibility(View.GONE);
-                //Socket.setVisibility(View.VISIBLE);
-                break;
-            }
-        }
-
-        Socket.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                openGmail(MainActivity.this, "mhiarbangalore@gmail.com", "Glenmorangie Augmented Reality Experience ", "\n" +
-                        "\nDear User, \n\nThank you for visiting the Glenmorangie Augmented Reality Zone. \n\nPlease find attached the pictures from the experience.\n\n" +
-                        "We hope you enjoy your favourite single malt from the Glenmorangie Range.\n" +
-                        "\n" +
-                        "Thank you!\n" +
-                        "\n" + "Warm regards,\n" + "\n" +
-                        "Glenmorangie India");
-            }
-        });
-
-    }
 
     public void openGmail(Activity activity, String email, String subject, String content) {
 
@@ -278,10 +103,6 @@ public class MainActivity extends FragmentActivity {
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.setType("text/plain");
         emailIntent.setType("*/*");
-
-
-        // emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(imagePath));
-
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, content);
         final PackageManager pm = activity.getPackageManager();
         final List<ResolveInfo> matches = pm.queryIntentActivities(emailIntent, 0);
@@ -291,10 +112,7 @@ public class MainActivity extends FragmentActivity {
                 best = info;
         if (best != null)
             emailIntent.setClassName(best.activityInfo.packageName, best.activityInfo.name);
-
-        //activity.startActivity(emailIntent);
         startActivityForResult(emailIntent, 1);
-
 
     }
 
@@ -309,15 +127,14 @@ public class MainActivity extends FragmentActivity {
         TextView textResponse;
         public DataOutputStream ouputStream = null;
         public InputStream inputStream = null;
-        public boolean flag = true;
         String msg = null;
-        MainActivity mActivity = new MainActivity();
 
-        Client(String addr, int port, TextView textResponse) {
+
+        Client(String addr, int port) {
             Log.d("Socket", "Entered Client Constructor");
             dstAddress = addr;
             dstPort = port;
-            this.textResponse = textResponse;
+
         }
 
         @Override
@@ -345,14 +162,14 @@ public class MainActivity extends FragmentActivity {
                 while ((bytesRead = inputStream.read(buffer)) != -1) {
 
                     ouputStream.write(msg.getBytes());
-                    Log.d("Socket", "Data sending to Server: " + msg);
+                   // Log.d("Socket", "Data sending to Server: " + msg);
                     ouputStream.flush();
                     Thread.sleep(1000);
                     byteArrayOutputStream.write(buffer, 0, bytesRead);
                     response = "";
                     response = byteArrayOutputStream.toString("UTF-8");
 
-                    Log.d("Socket", "Data received from Clientback: " + response + "bytes received : " + bytesRead);
+                    Log.d("Socket", "Data received from Client > " + response + "  bytes received > " + bytesRead);
                     if (response.contains("hello")) {
                         Log.d("Socket", "Server connected");
                         mainresponse = response;
@@ -366,6 +183,7 @@ public class MainActivity extends FragmentActivity {
                         mainresponse = response;
                         //mActivity.countryPicker();
                         byteArrayOutputStream.flush();
+                        publishProgress();
 
                     }
                     if (response.contains("okready")) {
@@ -373,27 +191,32 @@ public class MainActivity extends FragmentActivity {
                         mainresponse = response;
                         //msg = "Socket;india";
                         byteArrayOutputStream.reset();
+                        publishProgress();
 
                     }
                     if (response.contains("okSocket")) {
                         Log.d("Socket", "received response for Socket");
                         mainresponse = response;
                         byteArrayOutputStream.reset();
+                        publishProgress();
 
                     }
                     if (response.contains("okstart")) {
                         Log.d("Socket", "received response for start");
                         mainresponse = response;
                         byteArrayOutputStream.reset();
+                        publishProgress();
 
                     }
                     if (response.contains("okscore")) {
                         Log.d("Socket", "received response for one");
                         mainresponse = response;
                         byteArrayOutputStream.reset();
+                        publishProgress();
                     }
                     if (response.contains("okdone")) {
                         Log.d("Socket", "Game finished");
+                        publishProgress();
 
                     }
                 }
@@ -426,25 +249,131 @@ public class MainActivity extends FragmentActivity {
 
         @Override
         protected void onProgressUpdate(Void... values) {
-            Log.d("Socket", "Hello receiveddyhgkgkj");
-            if ((myClient.mainresponse.contains("hello"))) {
-                Log.d("Socket", "Hello received");
-                layout.setImageResource(R.drawable.tablet4); // -> here tablet 2 is a image in drawable
 
+            if ((myClient.mainresponse.contains("hello"))) {
+                Log.d("Socket", "Received -----> hello");
+
+                form.setVisibility(View.VISIBLE);
+                layout.setImageResource(R.drawable.tablet1);
                 dialog.cancel();
-                submitForm();
+                buttonForm.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        Log.d("Socket", "Entered User Details ");
+                        name = editName.getText().toString();
+                        number = editNumber.getText().toString();
+                        email = editEmail.getText().toString();
+
+                        Log.d("Socket", "Name : " + name);
+                        Log.d("Socket", "Number : " + number);
+                        Log.d("Socket", "Email : " + email);
+                        myClient.msg = "one";
+                        msg = "one";
+                    }
+                });
             }
 
-            if ((myClient.mainresponse.contains("ok"))) {
-                myClient.msg = "ready";
-                Log.d("Socket", "Hello naval joshi");
-                layout.setImageResource(R.drawable.tablet5); // -> here tablet 2 is a image in drawable
+            if ((myClient.mainresponse.contains("yo"))) {
+                editNumber.setText("");
+                editName.setText("");
+                editEmail.setText("");
+                Log.d("Socket", "Received -----> yo");
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+//Hide:
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
-                countryPicker();
-                Log.d("Socket", "Received OK");
+                form.setVisibility(View.GONE);
+                myClient.msg = "ready";
+                layout.setImageResource(R.drawable.tablet2);
+            }
+
+            if ((myClient.mainresponse.contains("okready"))) {
+                Log.d("Socket", "Received -----> okready");
+                layout.setImageResource(R.drawable.tablet3);
+                destination.setVisibility(View.VISIBLE);
+                destination.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+
+                        final CountryPicker picker = CountryPicker.newInstance("Select Country");
+                        picker.setListener(new CountryPickerListener() {
+                            @Override
+                            public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+                                // Implement your code here
+                                Log.d("Socket", "Destination : " + name);
+                                myClient.msg = "fly;" + name;
+                                picker.dismiss();
+                            }
+                        });
+                        picker.show(getSupportFragmentManager(), "COUNTRY_PICKER");
+
+                    }
+                });
+            }
+
+            if ((myClient.mainresponse.contains("okfly"))) {
+                destination.setVisibility(View.GONE);
+                fly.setVisibility(View.VISIBLE);
+                Log.d("Socket", "Received -----> okfly");
+                layout.setImageResource(R.drawable.tablet4);
+                buttonForm.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        myClient.msg = "start";
+                    }
+                });
+
+            }
+
+            if ((myClient.mainresponse.contains("okstart"))) {
+                Log.d("Socket", "Received -----> okstart");
+                fly.setVisibility(View.GONE);
+                layout.setImageResource(R.drawable.tablet5);
+                buttonForm.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        myClient.msg = "score";
+                    }
+                });
+
+            }
+
+            if ((myClient.mainresponse.contains("okscore"))) {
+                scoreText.setVisibility(View.VISIBLE);
+                scoreButton.setVisibility(View.VISIBLE);
+                Log.d("Socket", "Received -----> okscore");
+                layout.setImageResource(R.drawable.tablet6);
+                String[] scoreCard = myClient.mainresponse.split(";");
+                scoreText.setText(scoreCard[1]);
+                Log.d("Socket", "Final Score is :" + scoreCard[1]);
+                scoreButton.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        scoreText.setVisibility(View.GONE);
+                        scoreButton.setVisibility(View.GONE);
+
+                        myClient.msg = "hi";
+
+                        openGmail(MainActivity.this, "mhiarbangalore@gmail.com", "Fly with Qatar Airways ", "\n" +
+                            "\nDear User, \n\nThank you for visiting the Glenmorangie Augmented Reality Zone. \n\nPlease find attached the pictures from the experience.\n\n" +
+                            "We hope you enjoy your favourite single malt from the Glenmorangie Range.\n" +
+                            "\n" +
+                            "Thank you!\n" +
+                            "\n" + "Warm regards,\n" + "\n" +
+                            "Glenmorangie India");
+                        name = "";
+                        number = "";
+                        email = "";
+                    }
+
+                });
+
             }
             super.onProgressUpdate(values);
 
         }
+
+
     }
 }
+
