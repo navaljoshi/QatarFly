@@ -12,11 +12,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.mukesh.countrypicker.CountryPicker;
@@ -39,9 +41,12 @@ public class MainActivity extends FragmentActivity {
     public Dialog dialog = null;
     public EditText editName, editNumber, editEmail;
     TextView scoreText ;
-    Button scoreButton,destination,fly;
+    Button scoreButton,destination,fly,start;
     LinearLayout form ;
-    public  String name, number, email;
+    public  String name, number, email,ip;
+
+    boolean flag = false;
+
 
 
     @Override
@@ -54,6 +59,7 @@ public class MainActivity extends FragmentActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
         editName = (EditText) findViewById(R.id.logName);
         editNumber = (EditText) findViewById(R.id.logMob);
         editEmail = (EditText) findViewById(R.id.logEmail);
@@ -63,6 +69,7 @@ public class MainActivity extends FragmentActivity {
         fly = (Button) findViewById(R.id.fly);
         scoreText = (TextView)findViewById(R.id.scoreText);
         scoreButton = (Button)findViewById(R.id.scoreButton);
+       // start = (Button)findViewById(R.id.start);
         SocketConnectServerPopup(); // calling
     }
 
@@ -85,7 +92,9 @@ public class MainActivity extends FragmentActivity {
                 myClient = new Client(editIpText.getText().toString(),8008);
                 myClient.execute();
                 layout.setImageResource(R.drawable.tablet1);
+                ip = editIpText.toString();
                 dialog.dismiss();
+                flag = true;
 
             }
         });
@@ -114,8 +123,21 @@ public class MainActivity extends FragmentActivity {
             emailIntent.setClassName(best.activityInfo.packageName, best.activityInfo.name);
         startActivityForResult(emailIntent, 1);
 
-    }
 
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+
+            Log.d("Socket", "Mail sent - sending done");
+           // myClient.msg = "done";
+
+        } catch (Exception ex) {ex.printStackTrace();
+        }
+
+    }
 
     class Client extends AsyncTask<Void, Void, Void> {
 
@@ -134,15 +156,11 @@ public class MainActivity extends FragmentActivity {
             Log.d("Socket", "Entered Client Constructor");
             dstAddress = addr;
             dstPort = port;
-
         }
-
         @Override
         protected Void doInBackground(Void... arg0) {
             Log.d("Socket", "Entered doInBackground");
             try {
-
-
                 socket = new Socket(dstAddress, dstPort);
                 Log.d("Socket", "Created socket");
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
@@ -162,7 +180,7 @@ public class MainActivity extends FragmentActivity {
                 while ((bytesRead = inputStream.read(buffer)) != -1) {
 
                     ouputStream.write(msg.getBytes());
-                   // Log.d("Socket", "Data sending to Server: " + msg);
+                    Log.d("Socket", "Data sending to Server: " + msg);
                     ouputStream.flush();
                     Thread.sleep(1000);
                     byteArrayOutputStream.write(buffer, 0, bytesRead);
@@ -178,7 +196,7 @@ public class MainActivity extends FragmentActivity {
                         publishProgress();
 
                     }
-                    if (response.contains("ok")) {
+                    if (response.contains("yo")) {
                         Log.d("socket", "received response for one");
                         mainresponse = response;
                         //mActivity.countryPicker();
@@ -194,7 +212,7 @@ public class MainActivity extends FragmentActivity {
                         publishProgress();
 
                     }
-                    if (response.contains("okSocket")) {
+                    if (response.contains("okfly")) {
                         Log.d("Socket", "received response for Socket");
                         mainresponse = response;
                         byteArrayOutputStream.reset();
@@ -209,18 +227,18 @@ public class MainActivity extends FragmentActivity {
 
                     }
                     if (response.contains("okscore")) {
-                        Log.d("Socket", "received response for one");
+                        Log.d("Socket", "received response for okscore");
                         mainresponse = response;
                         byteArrayOutputStream.reset();
                         publishProgress();
                     }
-                    if (response.contains("okdone")) {
+                    if (response.contains("naval")) {
                         Log.d("Socket", "Game finished");
+                        mainresponse = response;
+                        byteArrayOutputStream.reset();
                         publishProgress();
-
                     }
                 }
-
 
             } catch (UnknownHostException e) {
                 // TODO Auto-generated catch block
@@ -253,6 +271,10 @@ public class MainActivity extends FragmentActivity {
             if ((myClient.mainresponse.contains("hello"))) {
                 Log.d("Socket", "Received -----> hello");
 
+             //   InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+//Hide:
+             //   imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+
                 form.setVisibility(View.VISIBLE);
                 layout.setImageResource(R.drawable.tablet1);
                 dialog.cancel();
@@ -260,6 +282,7 @@ public class MainActivity extends FragmentActivity {
                     @Override
                     public void onClick(View arg0) {
                         Log.d("Socket", "Entered User Details ");
+
                         name = editName.getText().toString();
                         number = editNumber.getText().toString();
                         email = editEmail.getText().toString();
@@ -268,19 +291,18 @@ public class MainActivity extends FragmentActivity {
                         Log.d("Socket", "Number : " + number);
                         Log.d("Socket", "Email : " + email);
                         myClient.msg = "one";
-                        msg = "one";
+                       // msg = "one";
                     }
                 });
             }
-
             if ((myClient.mainresponse.contains("yo"))) {
                 editNumber.setText("");
                 editName.setText("");
                 editEmail.setText("");
                 Log.d("Socket", "Received -----> yo");
-                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+             //   InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
 //Hide:
-                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+             //   imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
                 form.setVisibility(View.GONE);
                 myClient.msg = "ready";
@@ -294,6 +316,8 @@ public class MainActivity extends FragmentActivity {
                 destination.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
+
+
 
                         final CountryPicker picker = CountryPicker.newInstance("Select Country");
                         picker.setListener(new CountryPickerListener() {
@@ -316,7 +340,7 @@ public class MainActivity extends FragmentActivity {
                 fly.setVisibility(View.VISIBLE);
                 Log.d("Socket", "Received -----> okfly");
                 layout.setImageResource(R.drawable.tablet4);
-                buttonForm.setOnClickListener(new OnClickListener() {
+                fly.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
                         myClient.msg = "start";
@@ -324,18 +348,11 @@ public class MainActivity extends FragmentActivity {
                 });
 
             }
-
             if ((myClient.mainresponse.contains("okstart"))) {
                 Log.d("Socket", "Received -----> okstart");
                 fly.setVisibility(View.GONE);
                 layout.setImageResource(R.drawable.tablet5);
-                buttonForm.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
                         myClient.msg = "score";
-                    }
-                });
-
             }
 
             if ((myClient.mainresponse.contains("okscore"))) {
@@ -346,34 +363,59 @@ public class MainActivity extends FragmentActivity {
                 String[] scoreCard = myClient.mainresponse.split(";");
                 scoreText.setText(scoreCard[1]);
                 Log.d("Socket", "Final Score is :" + scoreCard[1]);
+              //  myClient.msg = "done";
                 scoreButton.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
                         scoreText.setVisibility(View.GONE);
                         scoreButton.setVisibility(View.GONE);
-
-                        myClient.msg = "hi";
-
-                        openGmail(MainActivity.this, "mhiarbangalore@gmail.com", "Fly with Qatar Airways ", "\n" +
+                    /*    openGmail(MainActivity.this, "mhiarbangalore@gmail.com", "Fly with Qatar Airways ", "\n" +
                             "\nDear User, \n\nThank you for visiting the Glenmorangie Augmented Reality Zone. \n\nPlease find attached the pictures from the experience.\n\n" +
                             "We hope you enjoy your favourite single malt from the Glenmorangie Range.\n" +
                             "\n" +
                             "Thank you!\n" +
                             "\n" + "Warm regards,\n" + "\n" +
-                            "Glenmorangie India");
+                            "Glenmorangie India");*/
+
+                        myClient.msg = "done";
                         name = "";
                         number = "";
                         email = "";
                     }
 
+
+
                 });
 
             }
-            super.onProgressUpdate(values);
 
+            if ((myClient.mainresponse.contains("naval"))) {
+                Log.d("Socket", "Received -----> okdone");
+                try {
+                     ouputStream.flush();
+                     inputStream.reset();
+                   // myClient.socket.close();
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+                // move to main screen
+
+                    try {
+                        Thread.sleep(3000);
+                        Log.d("Socket", "Starting Again");
+                      //  myClient = new Client(ip.toString(), 8008);
+                      //  myClient.execute();
+                        myClient.msg = "hi";
+                    } catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+            }
+            super.onProgressUpdate(values);
         }
 
 
     }
 }
-
