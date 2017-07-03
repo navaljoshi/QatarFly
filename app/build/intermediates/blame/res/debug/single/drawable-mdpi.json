@@ -12,12 +12,12 @@
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/drawable-mdpi/abc_scrubber_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
@@ -122,6 +122,10 @@
     {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
         "source": "/Users/naval/.android/build-cache/db8d0c64fd25f7f27cd4efdeed398f574776af41/output/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/quatarfly.png",
+        "source": "/Users/naval/Downloads/SocketClient-master/app/src/main/res/drawable-mdpi/quatarfly.png"
     },
     {
         "merged": "/Users/naval/Downloads/SocketClient-master/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",

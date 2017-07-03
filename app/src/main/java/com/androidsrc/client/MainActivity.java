@@ -1,5 +1,6 @@
 package com.androidsrc.client;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mukesh.countrypicker.CountryPicker;
 import com.mukesh.countrypicker.CountryPickerListener;
@@ -30,9 +33,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements AdapterView.OnItemSelectedListener {
 
     TextView response;
     Button buttonForm;
@@ -44,8 +48,9 @@ public class MainActivity extends FragmentActivity {
     Button scoreButton,destination,fly,start;
     LinearLayout form ;
     public  String name, number, email,ip;
+    Spinner spinner ;
 
-    boolean flag = false;
+    boolean flag,flag1 = false;
 
 
 
@@ -82,6 +87,40 @@ public class MainActivity extends FragmentActivity {
 
         final EditText editIpText = (EditText) dialog.findViewById(R.id.addressEditText);
         Button btnSave = (Button) dialog.findViewById(R.id.connectButton);
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+
+        // Spinner click listener
+        spinner.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("Bucharest");
+        categories.add("Kiev");
+        categories.add("Warsaw");
+        categories.add("Skopje");
+        categories.add("Rome");
+        categories.add("Pisa");
+
+        categories.add("Milan");
+        categories.add("Venice");
+        categories.add("Geneva");
+        categories.add("Berlin");
+        categories.add("Munich");
+        categories.add("Frankfurt");
+
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
+
+
+
 
 
         btnSave.setOnClickListener(new OnClickListener() {
@@ -101,8 +140,6 @@ public class MainActivity extends FragmentActivity {
         dialog.show();
        // dialog.dismiss(); // to be removed
     }
-
-
     public void openGmail(Activity activity, String email, String subject, String content) {
 
         Log.d("Socket", "Inside Function : openGmail ");
@@ -126,6 +163,32 @@ public class MainActivity extends FragmentActivity {
 
 
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        if(flag1) {
+            String item = parent.getItemAtPosition(position).toString();
+
+            // Showing selected spinner item
+            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+
+            if (myClient != null) {
+                name = item.toString();
+                myClient.msg = "fly;" + name;
+            }
+        }
+        else
+        {
+            flag1 = true;
+        }
+
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
@@ -283,6 +346,8 @@ public class MainActivity extends FragmentActivity {
                     public void onClick(View arg0) {
                         Log.d("Socket", "Entered User Details ");
 
+
+
                         name = editName.getText().toString();
                         number = editNumber.getText().toString();
                         email = editEmail.getText().toString();
@@ -291,7 +356,15 @@ public class MainActivity extends FragmentActivity {
                         Log.d("Socket", "Number : " + number);
                         Log.d("Socket", "Email : " + email);
                         myClient.msg = "one";
-                       // msg = "one";
+
+                        InputMethodManager inputManager = (InputMethodManager)
+                                getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                                InputMethodManager.HIDE_NOT_ALWAYS);
+
+
+                        // msg = "one";
                     }
                 });
             }
@@ -312,31 +385,13 @@ public class MainActivity extends FragmentActivity {
             if ((myClient.mainresponse.contains("okready"))) {
                 Log.d("Socket", "Received -----> okready");
                 layout.setImageResource(R.drawable.tablet3);
-                destination.setVisibility(View.VISIBLE);
-                destination.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-
-
-
-                        final CountryPicker picker = CountryPicker.newInstance("Select Country");
-                        picker.setListener(new CountryPickerListener() {
-                            @Override
-                            public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
-                                // Implement your code here
-                                Log.d("Socket", "Destination : " + name);
-                                myClient.msg = "fly;" + name;
-                                picker.dismiss();
-                            }
-                        });
-                        picker.show(getSupportFragmentManager(), "COUNTRY_PICKER");
-
-                    }
-                });
+                //destination.setVisibility(View.VISIBLE);
+                spinner.setVisibility(View.VISIBLE);
             }
 
             if ((myClient.mainresponse.contains("okfly"))) {
                 destination.setVisibility(View.GONE);
+                spinner.setVisibility(View.GONE);
                 fly.setVisibility(View.VISIBLE);
                 Log.d("Socket", "Received -----> okfly");
                 layout.setImageResource(R.drawable.tablet4);
@@ -359,9 +414,21 @@ public class MainActivity extends FragmentActivity {
                 scoreText.setVisibility(View.VISIBLE);
                 scoreButton.setVisibility(View.VISIBLE);
                 Log.d("Socket", "Received -----> okscore");
-                layout.setImageResource(R.drawable.tablet6);
+
+
+
                 String[] scoreCard = myClient.mainresponse.split(";");
                 scoreText.setText(scoreCard[1]);
+                Integer x = Integer.valueOf(scoreCard[1]);
+                if(x>=60) {
+                    layout.setImageResource(R.drawable.tablet7);
+                    scoreText.setVisibility(View.GONE);
+
+                }
+                else {
+                    layout.setImageResource(R.drawable.tablet6);
+                    scoreText.setVisibility(View.VISIBLE);
+                }
                 Log.d("Socket", "Final Score is :" + scoreCard[1]);
               //  myClient.msg = "done";
                 scoreButton.setOnClickListener(new OnClickListener() {

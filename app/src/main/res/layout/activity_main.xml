@@ -3,18 +3,17 @@
     android:id="@+id/basic"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     >
 
     <ImageView
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:id="@+id/background"
         android:scaleType="fitXY"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:background="@drawable/tablet1"
         />
-
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="176dp"
@@ -34,21 +33,24 @@
             android:layout_height="70dp"
             android:layout_marginTop="320dp"
             android:hint="name"
-            android:textSize="38px" />
+            android:textSize="38px"
+            android:imeOptions="actionDone"/>
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="70dp"
             android:hint="email"
             android:id="@+id/logEmail"
             android:textSize="38px"
-            android:layout_marginTop="38dp"/>
+            android:layout_marginTop="38dp"
+            android:imeOptions="actionDone"/>
         <EditText android:layout_width="fill_parent"
             android:layout_height="70dp"
             android:hint="mobile"
             android:id="@+id/logMob"
             android:width="100dp"
             android:textSize="38px"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginTop="32dp"
+            android:imeOptions="actionDone"/>
 
         <Button
             android:id="@+id/logSub"
@@ -64,24 +66,23 @@
 
     <TextView
         android:id="@+id/scoreText"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:text="10"
-        android:layout_marginTop="244dp"
+        android:layout_width="170dp"
+        android:layout_height="130dp"
+        android:text="8"
+        android:layout_marginTop="414dp"
         android:layout_below="@+id/linearLayout"
         android:layout_centerHorizontal="true"
         android:visibility="gone"
         android:textSize="100dp"/>
     <Button
         android:id="@+id/scoreButton"
-        android:text="Mail Scores"
+        android:textSize="20dp"
         android:layout_width="match_parent"
         android:layout_height="138dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.18"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="156dp"
         android:visibility="gone"
         android:background="@android:color/transparent"/>
 
@@ -106,6 +107,18 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="156dp"
+        android:visibility="gone"
+        android:background="@android:color/transparent"/>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/spinner_title"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="233dp"
         android:visibility="gone"
         android:background="@android:color/transparent"/>
 
